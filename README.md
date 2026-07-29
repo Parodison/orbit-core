@@ -42,17 +42,42 @@ propagation logic and test suite.
 
 ## Supported platforms
 
-Right now OrbitCore is pure Kotlin for Kotlin projects: **JVM, Android, iOS (arm64 and
-simulator arm64), and Linux (x64)** are ready to consume it directly as a Kotlin dependency.
+OrbitCore publishes artifacts for **JVM, Android, iOS (arm64 and simulator arm64), Linux
+(x64), JS and Wasm/JS**, so any of them can be consumed directly as a Kotlin dependency.
 
-JavaScript/TypeScript and Wasm are declared as build targets, but their bindings (type
-adaptation for idiomatic JS/TS consumption, Wasm packaging) aren't finished yet — they're
-planned, not ready for use.
+JS and Wasm/JS bindings are published, but their JS/TS-idiomatic ergonomics (clean TypeScript
+types instead of raw Kotlin types like `Instant` in exported signatures) aren't finished yet —
+the artifacts exist, direct JS/TS interop is still a work in progress.
 
-## Status
+## Installation
 
-This library is under active development and **not yet published to Maven Central**.
-Installation instructions will be added here once a first version is published.
+OrbitCore is published on [Maven Central](https://repo1.maven.org/maven2/com/parodison/orbit-core/) as `com.parodison:orbit-core`.
+
+Version catalog (`libs.versions.toml`):
+
+```toml
+[versions]
+orbit-core = "0.1.0"
+
+[libraries]
+orbit-core = { module = "com.parodison:orbit-core", version.ref = "orbit-core" }
+```
+
+Then, in your module's `build.gradle.kts`:
+
+```kotlin
+dependencies {
+    implementation(libs.orbit.core)
+}
+```
+
+Or without a version catalog:
+
+```kotlin
+dependencies {
+    implementation("com.parodison:orbit-core:0.1.0")
+}
+```
 
 ## License
 
