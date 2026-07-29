@@ -8,10 +8,11 @@ plugins {
     alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.vanniktech.mavenPublish)
     alias(libs.plugins.kotlin.serialization)
+    signing
 }
 
-group = "com.parodison.orbit.core"
-version = "1.0.0"
+group = "com.parodison"
+version = "0.1.0"
 
 kotlin {
     jvm()
@@ -42,7 +43,7 @@ kotlin {
     }
     wasmJs {
         browser()
-        binaries.executable()
+        binaries.library()
     }
 
 
@@ -63,31 +64,35 @@ mavenPublishing {
 
     signAllPublications()
 
-    coordinates(group.toString(), "library", version.toString())
+    coordinates(group.toString(), "orbit-core", version.toString())
 
     pom {
-        name = "My library"
-        description = "A library."
-        inceptionYear = "2024"
-        url = "https://github.com/kotlin/multiplatform-library-template/"
+        name = "Orbit Core"
+        description = "Kotlin Multiplatform library for satellite orbit propagation (SGP4/SDP4) with pass prediction and GeoJSON output"
+        inceptionYear = "2026"
+        url = "https://github.com/Parodison/orbit-core"
         licenses {
             license {
-                name = "XXX"
-                url = "YYY"
-                distribution = "ZZZ"
+                name = "Apache-2.0"
+                url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
+                distribution = "repo"
             }
         }
         developers {
             developer {
-                id = "XXX"
-                name = "YYY"
-                url = "ZZZ"
+                id = "parodison"
+                name = "Rodrigo Parodi"
+                url = "https://parodison.com"
             }
         }
         scm {
-            url = "XXX"
-            connection = "YYY"
-            developerConnection = "ZZZ"
+            url = "https://github.com/Parodison/orbit-core"
+            connection = "scm:git:git://github.com/Parodison/orbit-core.git"
+            developerConnection = "scm:git:ssh://git@github.com/Parodison/orbit-core.git"
         }
     }
+}
+
+signing {
+    useGpgCmd()
 }
